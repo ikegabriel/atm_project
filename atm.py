@@ -1,7 +1,15 @@
+import psycopg2
+import bills
+
+connection = psycopg2.connect('dbname=test1')
+connect = connection.cursor()
+balance_request = connect.execute('SELECT account_balance FROM account;')
+result = connect.fetchall()
+real_account = result[0]
+account_balance = real_account[0]
 
 
 pin = 1451
-account_balance = 5000000
 
 operations = '''
                 Press 1 for cash withdrawal
@@ -40,23 +48,20 @@ def check_balance():
 def pay_bills():
     bill_operation = print('''
                         Press 1 to pay electricity bill
-                        Press 2 to pay water bill
-                        Press 3 to pay internet bill
-                        press 4 to pay phone bill
+                        Press 2 to pay internet bill
+                        press 3 to pay phone bill
     ''')
     bill_select = int(input('Select bill >>>:'))
 
-    try:
-        if bill_select == 1:
-            electricity()
-        elif bill_select == 2:
-            water()
-        elif bill_select == 3:
-            internet()
-        elif bill_select == 4:
-            phone()
-    except:
-        print('Wrong Input')
+    #try:
+    if bill_select == 1:
+        bills.electricity()
+    elif bill_select == 2:
+        bills.internet()
+    elif bill_select == 3:
+        bills.phone()
+    #except:
+        #print('Wrong Input')
 
 
 
@@ -68,6 +73,8 @@ def exe():
         cash_withdrawal()
     elif operation == 2:
         transfer()
+    elif operation == 3:
+        pay_bills()
     elif operation == 4:
         check_balance()
 
