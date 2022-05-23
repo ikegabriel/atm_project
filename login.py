@@ -2,8 +2,6 @@ import random
 import atm
 import psycopg2
 
-allowed_users = 'abeldeen2', 'sambuo', 'jiji204'
-allowed_password = '12345'
 
 username = input('Please enter your username >>> \n')
 password = input('Please enter your password >>> \n')
@@ -40,10 +38,10 @@ while True:
         else:
             print('Incorrect code')
             continue
-    elif username in allowed_users and password != allowed_password:
+    elif username in account_user and password != account_password:
         print('wrong password, try again')
-    elif username not in allowed_users and password == allowed_password:
+    elif username not in account_user and password == account_password:
         print(f'sorry,{username} is not registered. Try again')
         continue
-    elif username not in allowed_users and password != allowed_password:
+    elif username not in account_user and password != account_password:
         print('your username and password are incorrect, check correctly and try again')
