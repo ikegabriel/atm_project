@@ -24,9 +24,10 @@ def cash_withdrawal():
     pin_input = int(input('Enter your pin >>>:'))
     if pin_input == pin:
         debit = account_balance - amount
-        new_balance = debit
+        connect.execute(f'UPDATE account SET account_balance = {debit} WHERE id = 1;')
+        connection.commit()
         print('Please take your cash')
-        print(f'Debit of {amount} Naira, your balance is {new_balance} Naira')
+        print(f'Debit of {amount} Naira, your balance is {debit} Naira')
 
 def transfer():
     amount = int(input('Enter amount >>>:'))
@@ -34,10 +35,11 @@ def transfer():
     recipient_bank = input('Enter recipient bank')
     pin_input = int(input('Enter your pin >>>:'))
     if pin_input == pin:
-        transfer = account_balance - amount
-        new_balance = transfer
+        debit = account_balance - amount
+        connect.execute(f'UPDATE account SET account_balance = {debit} WHERE id = 1;')
+        connection.commit()
         print('Transfer Succesful')
-        print(f'You made a transfer of {amount} Naira, your balance is {new_balance} Naira')
+        print(f'You made a transfer of {amount} Naira, your balance is {debit} Naira')
 
 def check_balance():
     pin_input = int(input('Enter your pin >>>:'))

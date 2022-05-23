@@ -24,9 +24,10 @@ def electricity():
     pin = int(input('Enter your pin >>>:'))
     if pin == userpin:
         debit = account_balance - amount
-        new_balance = debit
+        connect.execute(f'UPDATE account SET account_balance = {debit} WHERE id = 1;')
+        connection.commit()
         print(f'Purchase succesful')
-        print(f'You purchased electricity of {amount}, your balance is {new_balance}')
+        print(f'You purchased electricity of {amount}, your balance is {debit}')
 
 def internet():
     distributor = input('''Choose your internet provider \n
@@ -41,9 +42,10 @@ def internet():
     pin = int(input('Enter your pin >>>:'))
     if pin == userpin:
         debit = account_balance - amount
-        new_balance = debit
+        connect.execute(f'UPDATE account SET account_balance = {debit} WHERE id = 1;')
+        connection.commit()
         print(f'Purchase succesful')
-        print(f'You purchased internet of {amount}, your balance is {new_balance}')
+        print(f'You purchased internet of {amount}, your balance is {debit}')
 
 
 def phone():
@@ -59,6 +61,7 @@ def phone():
     pin = int(input('Enter your pin >>>:'))
     if pin == userpin:
         debit = account_balance - amount
-        new_balance = debit
+        connect.execute(f'UPDATE account SET account_balance = {debit} WHERE id = 1;')
+        connection.commit()
         print(f'Recharge succesful')
-        print(f'You purchased airtime of {amount}, your balance is {new_balance}')
+        print(f'You purchased airtime of {amount}, your balance is {debit}')
